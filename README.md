@@ -28,6 +28,7 @@ webpack-cli
 webpack.client.js
 ```
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const clientConfig = {
     mode: 'development',
     entry: {
@@ -40,13 +41,17 @@ const clientConfig = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js'
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        port: 4000
+    },
     // 配置loader
     module: {
         rules: [
             {
                 test: /\.(js|jsx|ts|tsx)$/,
                 loader: 'babel-loader',
-                query: {
+                options: {
                     presets: [
                         "@babel/preset-env",
                         "@babel/preset-react"
@@ -67,7 +72,57 @@ const clientConfig = {
                 }
             }
         }
-    }
+    },
+    // 配置plugin
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'client', 'index.html')
+        })
+    ]
 }
 module.exports = clientConfig;
+```
+client/app.js
+```
+import React, { useState } from 'react'
+import ReactDom from 'react-dom'
+
+const App = ({initialText}) => {
+    const [ text, setText ] = useState(initialText)
+    
+    const handleClick = () => {
+        setText('changed by client event.')
+    }
+
+    return (
+        <div>
+            <p onClick={handleClick}>{text}</p>
+        </div>
+    )
+}
+
+ReactDom.render(
+    <App initialText="rendered on the client slide."/>,
+    document.getElementById('root')
+)
+```
+client/index.html
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React SSR With React-router and redux</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
+```
+package.json
+```
+  "scripts": {
+    "start:dev": "webpack serve --config webpack.client.js"
+  },
 ```

@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "ssr example",
   "main": "index.js",
+  "config": {
+    "env": "fws",
+    "serverPort": "3003",
+    "clientPort": "4000"
+},
   "scripts": {
-    "start:dev": "webpack serve --config webpack.client.js"
+    "start:client": "webpack serve --config webpack.client.js",
+    "start": "webpack --config webpack.server.js && node ./dist/server.js"
   },
   "author": "Shelly",
   "license": "ISC",

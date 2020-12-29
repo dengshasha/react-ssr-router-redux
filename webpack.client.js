@@ -1,6 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const commonConfig = require('./webpack.common')
+const { config } = require('./package.json') 
 const clientConfig = {
+    ...commonConfig,
     mode: 'development',
     entry: {
         client: [
@@ -14,22 +17,7 @@ const clientConfig = {
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
-        port: 4000
-    },
-    // 配置loader
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx|ts|tsx)$/,
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        "@babel/preset-env",
-                        "@babel/preset-react"
-                    ]
-                }
-            }
-        ]
+        port: config.clientPort
     },
     // 选择一种 source map 格式来增强调试过程。不同的值会明显影响到构建(build)和重新构建(rebuild)的速度。
     devtool: 'eval-cheap-source-map',
@@ -37,8 +25,9 @@ const clientConfig = {
     optimization: {
         splitChunks: {
             cacheGroups: {
-                commons: {
+                default: {
                     test: /[\\/]node_modules[\\/]/,
+                    name: 'app',
                     chunks: 'all'
                 }
             }
