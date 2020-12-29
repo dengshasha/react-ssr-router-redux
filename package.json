@@ -4,13 +4,12 @@
   "description": "ssr example",
   "main": "index.js",
   "scripts": {
-    "server": "webpack --config ./config/webpack.server.js",
-    "start": "node ./config/ssr-server-start.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "webpack serve --config webpack.client.js"
   },
   "author": "Shelly",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "koa": "^2.13.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -23,8 +22,10 @@
     "@babel/preset-react": "^7.12.7",
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
+    "html-webpack-plugin": "^4.5.0",
     "webpack": "^5.9.0",
     "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0",
     "webpack-node-externals": "^2.5.2"
   }
 }
