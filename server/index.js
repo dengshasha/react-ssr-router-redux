@@ -10,7 +10,7 @@ const app = new Koa()
 app.use(async ctx => {
     const scripts = ['app.js', 'client.js']
     const appContent = ReactDOMServer.renderToString(
-        <App initialState={"render on server slide."}/>
+        <App initialText={"render on server slide."}/>
     )
     const html = ReactDOMServer.renderToString(
         <Html

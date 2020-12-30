@@ -8,7 +8,7 @@ const clientConfig = {
     entry: {
         client: [
             '@babel/polyfill',
-            './client/app.js'
+            './client/index.js'
         ]
     },
     output: {
