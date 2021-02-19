@@ -15,20 +15,18 @@ koa
 - @babel/preset-react
 
 服务端需要webpack吗？
-答：要做服务端渲染，就必须依赖webpack。
+
+答：看你的服务端运行的代码是源码还是编译之后的代码，如果是源码，一般是需要webpack的。
 
 ### 把客户端跑起来
 目录结构：
+```
 -client
-
 -----app.js
-
 -----index.html
-
 -webpack.client.js
-
 -package.json
-
+```
 webpack.client.js
 ```
 const path = require('path')
