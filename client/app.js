@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import routesConfig from '../router/route-config'
 
-const App = ({initialText}) => {
-    const [ text, setText ] = useState(initialText)
-    
-    const handleClick = () => {
-        setText('changed by client event.')
-    }
-
+const App = ({component}) => {
     return (
-        <div>
-            <p onClick={handleClick}>{text}</p>
-        </div>
+        <Switch>
+        {
+            routesConfig.map((route) => (
+                <Route 
+                    key={route.path}
+                    {...route}
+                    component={component}
+                />
+            ))
+        }
+        </Switch>
     )
 }
 

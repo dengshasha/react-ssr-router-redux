@@ -16,6 +16,7 @@ const clientConfig = {
         filename: '[name].js'
     },
     devServer: {
+        historyApiFallback: true,
         contentBase: path.join(__dirname, 'dist'),
         port: config.clientPort
     },

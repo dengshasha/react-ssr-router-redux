@@ -4,13 +4,17 @@ import Koa from 'koa'
 import Html from './html'
 import App from '../client/app'
 import { config } from '../package.json'
+import { StaticRouter } from 'react-router-dom'
 
 const app = new Koa()
 
 app.use(async ctx => {
     const scripts = ['app.js', 'client.js']
     const appContent = ReactDOMServer.renderToString(
-        <App initialText={"render on server slide."}/>
+        <StaticRouter>
+            <App initialText={"render on server slide."}/>
+        </StaticRouter>
+        
     )
     const html = ReactDOMServer.renderToString(
         <Html

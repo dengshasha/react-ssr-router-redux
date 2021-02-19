@@ -21,7 +21,7 @@ const Html = ({children, initialState, scripts}) => {
                         }} />
                 }
                 {
-                    scripts.map((item,index) => <script key={index} src={getSource(item)}/>)
+                    scripts.map((item,index) => <script key={index} src={getSource(item)} async/>)
                 }
             </body>
         </html>
