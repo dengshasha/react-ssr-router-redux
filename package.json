@@ -10,7 +10,7 @@
 },
   "scripts": {
     "start:client": "webpack serve --config webpack.client.js",
-    "start": "webpack --config webpack.server.js && node ./dist/server.js"
+    "start:server": "webpack --config webpack.server.js && node ./dist/server.js"
   },
   "author": "Shelly",
   "license": "ISC",
