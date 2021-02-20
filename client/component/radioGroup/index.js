@@ -6,19 +6,14 @@ const RadioGroup = (props) => {
         children
     } = props
 
-    const handleChange = (e) => {
-        debugger
+    const handleChange = (e, selectedValue) => {
+        console.log(selectedValue)
     }
-    const childrenWithProps = React.Children.map(children, child => React.cloneElement(child, 
-        {
-            onChange: handleChange
-        }
-    ));
     return (
         <RadioContext.Provider value={{
             onChange: handleChange
         }}>
-            {childrenWithProps}
+            {children}
         </RadioContext.Provider>
     )
 }
