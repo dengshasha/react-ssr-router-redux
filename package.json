@@ -7,7 +7,7 @@
     "env": "fws",
     "serverPort": "3003",
     "clientPort": "4000"
-},
+  },
   "scripts": {
     "start:client": "webpack serve --config webpack.client.js",
     "start:server": "webpack --config webpack.server.js && node ./dist/server.js"
